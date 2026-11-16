@@ -1,0 +1,16 @@
+[project]
+name = "skillbridge"
+version = "0.1.0-alpha"
+requires-python = ">=3.11"
+
+[tool.ruff]
+line-length = 110
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "S"]   # style, errors, imports, bugbear, bandit security checks
+ignore = ["S101"]                    # allow assert in tests
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["db: needs a PostgreSQL + pgvector database"]
