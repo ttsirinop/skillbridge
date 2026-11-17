@@ -160,8 +160,8 @@ any AI-generated code in it.
 - SQL uses parameterized queries only, never string formatting, to prevent SQL injection.
 - `ruff` runs Bandit security rules (`S`) in CI.
 - All input is validated before it reaches the database: email format, name and text lengths,
-  at most 50 skills of 50 characters each, unknown fields rejected, and CSV uploads capped at 1 MB
-  and 1,000 rows.
+  at most 50 skills of 50 characters each, unknown fields rejected, and CSV uploads must be `.csv`
+  files, capped at 1 MB and 1,000 rows by default (`MAX_UPLOAD_BYTES`, `MAX_IMPORT_ROWS`).
 - Employee skill data is personal data. The Alpha uses sample data only; real deployments would need
   authentication, access control by role, and encryption in transit.
 - Match results store the model version, so recommendations can be audited for bias and traced to
@@ -175,4 +175,5 @@ any AI-generated code in it.
   A background job should handle this before real deployment.
 - `role_profiles.embedding` has no vector index yet; roles are looked up by id, so it isn't needed
   until roles are searched by similarity.
-- The result limit and CSV file limits are constants in code, not configuration.
+- ~~The CSV file limits are constants in code, not configuration.~~ Fixed after peer review: they are
+  now `MAX_UPLOAD_BYTES` and `MAX_IMPORT_ROWS` environment variables (see `.env.example`).
