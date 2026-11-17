@@ -13,4 +13,7 @@ ignore = ["S101"]                    # allow assert in tests
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-markers = ["db: needs a PostgreSQL + pgvector database"]
+markers = [
+    "db: needs a PostgreSQL + pgvector database",
+    "ai: runs the real Sentence-BERT model (needs requirements-ai.txt)",
+]

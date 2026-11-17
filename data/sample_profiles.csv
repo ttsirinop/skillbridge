@@ -1,0 +1,51 @@
+full_name,email,department,skills,summary
+Sawyer Kim,sawyer.kim@example.com,Engineering,React; FastAPI; TypeScript; Docker,Builds and maintains backend services and web applications.
+Emerson Abara,emerson.abara@example.com,Data Science,Statistics; scikit-learn; SQL; Data Visualization; Tableau,Analyzes data and builds predictive models.
+Avery Lindqvist,avery.lindqvist@example.com,Cybersecurity,Threat Hunting; Splunk; NIST 800-53; SIEM; CI/CD,Protects systems and responds to security incidents.
+Kendall Ortega,kendall.ortega@example.com,Program Management,Technical Writing; Agile; Stakeholder Management; Budgeting; Scheduling,Plans and coordinates cross-team projects.
+Quinn Kim,quinn.kim@example.com,Cloud Operations,Docker; Linux; Azure; Terraform; Monitoring; Networking; Risk Management,Runs cloud infrastructure and deployment pipelines.
+Dakota Larsen,dakota.larsen@example.com,Engineering,TypeScript; React; PostgreSQL; Java; Git; Python,Builds and maintains backend services and web applications.
+Drew Kim,drew.kim@example.com,Data Science,Data Visualization; NLP; pandas; PyTorch,Analyzes data and builds predictive models.
+Drew Castillo,drew.castillo@example.com,Cybersecurity,Python; Incident Response; Splunk; NIST 800-53; SIEM; Threat Hunting,Protects systems and responds to security incidents.
+Rowan Lindqvist,rowan.lindqvist@example.com,Program Management,Jira; Confluence; Budgeting; Agile,Plans and coordinates cross-team projects.
+Harper Mensah,harper.mensah@example.com,Cloud Operations,Monitoring; Terraform; Docker; Azure; Networking,Runs cloud infrastructure and deployment pipelines.
+Hayden Patel,hayden.patel@example.com,Engineering,Java; Git; REST APIs; TypeScript; CI/CD; Threat Hunting,Builds and maintains backend services and web applications.
+Taylor Novak,taylor.novak@example.com,Data Science,Data Visualization; pandas; Jupyter; scikit-learn; Machine Learning; Tableau,Analyzes data and builds predictive models.
+Peyton Brooks,peyton.brooks@example.com,Cybersecurity,Vulnerability Management; NIST 800-53; Threat Hunting; Splunk; Incident Response; pandas,Protects systems and responds to security incidents.
+Jamie Byrne,jamie.byrne@example.com,Program Management,Technical Writing; Risk Management; Scrum; Budgeting; Confluence; Risk Assessment,Plans and coordinates cross-team projects.
+Finley Ortega,finley.ortega@example.com,Cloud Operations,CI/CD; Networking; Kubernetes; AWS; Bash; Jupyter,Runs cloud infrastructure and deployment pipelines.
+Casey Patel,casey.patel@example.com,Engineering,FastAPI; Spring Boot; PostgreSQL; Linux; Git; Python,Builds and maintains backend services and web applications.
+Parker Brooks,parker.brooks@example.com,Data Science,scikit-learn; NLP; Statistics; Data Visualization,Analyzes data and builds predictive models.
+Parker Larsen,parker.larsen@example.com,Cybersecurity,Python; Network Security; Splunk; Threat Hunting; Risk Assessment; Vulnerability Management,Protects systems and responds to security incidents.
+Harper Patel,harper.patel@example.com,Program Management,Agile; Scheduling; Jira; Confluence; Stakeholder Management; Risk Management; Python,Plans and coordinates cross-team projects.
+Peyton Moreau,peyton.moreau@example.com,Cloud Operations,CI/CD; Bash; Terraform; Azure; Docker; Networking,Runs cloud infrastructure and deployment pipelines.
+Dakota Ortega,dakota.ortega@example.com,Engineering,Docker; TypeScript; CI/CD; Spring Boot; React; PostgreSQL,Builds and maintains backend services and web applications.
+Kendall Patel,kendall.patel@example.com,Data Science,Statistics; SQL; Data Visualization; Python,Analyzes data and builds predictive models.
+Casey Abara,casey.abara@example.com,Cybersecurity,Incident Response; NIST 800-53; Splunk; Python; Risk Assessment,Protects systems and responds to security incidents.
+Jordan Castillo,jordan.castillo@example.com,Program Management,Risk Management; Scrum; Budgeting; Stakeholder Management; Agile; Confluence,Plans and coordinates cross-team projects.
+Sawyer Lindqvist,sawyer.lindqvist@example.com,Cloud Operations,Linux; CI/CD; Monitoring; Bash,Runs cloud infrastructure and deployment pipelines.
+Drew Fischer,drew.fischer@example.com,Engineering,Docker; FastAPI; Git; pytest; REST APIs; Jupyter,Builds and maintains backend services and web applications.
+Taylor Castillo,taylor.castillo@example.com,Data Science,SQL; Data Visualization; scikit-learn; Jupyter,Analyzes data and builds predictive models.
+Harper Sato,harper.sato@example.com,Cybersecurity,Risk Assessment; Incident Response; SIEM; NIST 800-53; Python; Splunk; Terraform,Protects systems and responds to security incidents.
+Cameron Haddad,cameron.haddad@example.com,Program Management,Technical Writing; Stakeholder Management; Scheduling; Scrum,Plans and coordinates cross-team projects.
+Finley Sato,finley.sato@example.com,Cloud Operations,Monitoring; Azure; CI/CD; Kubernetes,Runs cloud infrastructure and deployment pipelines.
+Peyton Fischer,peyton.fischer@example.com,Engineering,Linux; React; Kubernetes; CI/CD,Builds and maintains backend services and web applications.
+Quinn Patel,quinn.patel@example.com,Data Science,Python; pandas; NLP; Jupyter; Data Visualization,Analyzes data and builds predictive models.
+Riley Okafor,riley.okafor@example.com,Cybersecurity,Incident Response; Penetration Testing; SIEM; Risk Assessment; Network Security; Terraform,Protects systems and responds to security incidents.
+Finley Ramirez,finley.ramirez@example.com,Program Management,Risk Management; Technical Writing; Budgeting; Confluence; Scrum; Vulnerability Management,Plans and coordinates cross-team projects.
+Quinn Ivanova,quinn.ivanova@example.com,Cloud Operations,Bash; Linux; Azure; Monitoring; Docker,Runs cloud infrastructure and deployment pipelines.
+Dakota Ramirez,dakota.ramirez@example.com,Engineering,CI/CD; PostgreSQL; Docker; REST APIs; Risk Management,Builds and maintains backend services and web applications.
+Harper Larsen,harper.larsen@example.com,Data Science,pandas; scikit-learn; Tableau; SQL,Analyzes data and builds predictive models.
+Jordan Sato,jordan.sato@example.com,Cybersecurity,Network Security; Python; Risk Assessment; Threat Hunting; Kubernetes,Protects systems and responds to security incidents.
+Kendall Byrne,kendall.byrne@example.com,Program Management,Jira; Budgeting; Agile; Stakeholder Management; Confluence,Plans and coordinates cross-team projects.
+Morgan Sato,morgan.sato@example.com,Cloud Operations,Monitoring; Azure; Terraform; Networking,Runs cloud infrastructure and deployment pipelines.
+Riley Kim,riley.kim@example.com,Engineering,Git; Docker; pytest; PostgreSQL; REST APIs,Builds and maintains backend services and web applications.
+Avery Ramirez,avery.ramirez@example.com,Data Science,Python; Tableau; pandas; Statistics; scikit-learn,Analyzes data and builds predictive models.
+Harper Okafor,harper.okafor@example.com,Cybersecurity,Incident Response; Vulnerability Management; Splunk; Risk Assessment; Threat Hunting; Terraform,Protects systems and responds to security incidents.
+Kendall Ivanova,kendall.ivanova@example.com,Program Management,Technical Writing; Budgeting; Agile; Confluence,Plans and coordinates cross-team projects.
+Drew Byrne,drew.byrne@example.com,Cloud Operations,Kubernetes; Terraform; Azure; AWS; Networking; Linux,Runs cloud infrastructure and deployment pipelines.
+Finley Kim,finley.kim@example.com,Engineering,Spring Boot; Git; PostgreSQL; FastAPI; Linux; pytest; Network Security,Builds and maintains backend services and web applications.
+Harper Haddad,harper.haddad@example.com,Data Science,Python; SQL; Tableau; PyTorch,Analyzes data and builds predictive models.
+Quinn Brooks,quinn.brooks@example.com,Cybersecurity,Python; SIEM; Penetration Testing; Network Security,Protects systems and responds to security incidents.
+Reese Okafor,reese.okafor@example.com,Program Management,Scheduling; Risk Management; Budgeting; Agile,Plans and coordinates cross-team projects.
+Avery Mensah,avery.mensah@example.com,Cloud Operations,Terraform; CI/CD; Monitoring; Azure,Runs cloud infrastructure and deployment pipelines.
