@@ -4,7 +4,8 @@ from typing import Annotated
 
 from fastapi import APIRouter, File, HTTPException, Query, UploadFile, status
 
-from app.api.csv_import import MAX_BYTES, CsvFormatError, parse_profiles_csv
+from app.api.csv_import import CsvFormatError, parse_profiles_csv
+from app.config import get_settings
 from app.db import repository
 from app.db.connection import get_connection
 from app.matching.encoder import profile_text, try_encode
@@ -54,9 +55,15 @@ def import_profiles(
     """Bulk-load profiles from CSV. Existing emails are updated; bad rows are reported, not fatal."""
     # Plain def (not async) so the model and database work run in FastAPI's thread pool
     # instead of blocking the event loop for every other request.
-    content = file.file.read(MAX_BYTES + 1)
-    if len(content) > MAX_BYTES:
-        raise HTTPException(status.HTTP_413_REQUEST_ENTITY_TOO_LARGE, "File is larger than 1,000 KB.")
+    # Check the extension, not the content type: browsers on Windows send Excel's type for .csv files.
+    if not (file.filename or "").lower().endswith(".csv"):
+        raise HTTPException(status.HTTP_400_BAD_REQUEST, "Upload must be a .csv file.")
+    max_bytes = get_settings().max_upload_bytes
+    content = file.file.read(max_bytes + 1)
+    if len(content) > max_bytes:
+        raise HTTPException(
+            status.HTTP_413_REQUEST_ENTITY_TOO_LARGE, f"File is larger than {max_bytes:,} bytes."
+        )
     try:
         profiles, errors = parse_profiles_csv(content)
     except CsvFormatError as exc:

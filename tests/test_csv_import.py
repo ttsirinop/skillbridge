@@ -1,6 +1,6 @@
 import pytest
 
-from app.api.csv_import import MAX_ROWS, CsvFormatError, parse_profiles_csv
+from app.api.csv_import import CsvFormatError, parse_profiles_csv
 
 HEADER = "full_name,email,department,skills,summary\n"
 
@@ -33,13 +33,34 @@ def test_excel_bom_and_header_case_are_tolerated():
     [
         (b"name,email\nA,a@example.com\n", "Missing required column"),
         ("full_name,email,skills\nÁ,a@example.com,x\n".encode("latin-1"), "UTF-8"),
-        ((HEADER + "A,a{}@example.com,,x,\n" * (MAX_ROWS + 1)).encode(), "more than"),
+        ((HEADER + "A,a@example.com,,x,\n" * 1001).encode(), "more than"),
     ],
     ids=["missing-columns", "not-utf8", "too-many-rows"],
 )
 def test_unusable_files_are_rejected(content, message):
     with pytest.raises(CsvFormatError, match=message):
         parse_profiles_csv(content)
+
+
+def test_limits_come_from_configuration(monkeypatch):
+    from app.config import get_settings
+
+    monkeypatch.setenv("MAX_IMPORT_ROWS", "2")
+    monkeypatch.setenv("MAX_UPLOAD_BYTES", "500")
+    assert get_settings().max_import_rows == 2
+    rows = (HEADER + "A,a@example.com,,x,\nB,b@example.com,,x,\nC,c@example.com,,x,\n").encode()
+    with pytest.raises(CsvFormatError, match="more than 2 rows"):
+        parse_profiles_csv(rows)
+    with pytest.raises(CsvFormatError, match="larger than"):
+        parse_profiles_csv(b"x" * 501)
+
+
+def test_import_endpoint_rejects_non_csv_files(client):
+    # Rejected before any database work, so this runs without DATABASE_URL.
+    content = HEADER + "Avery Brooks,avery@example.com,,Python,\n"
+    resp = client.post("/profiles/import", files={"file": ("people.xlsx", content, "text/csv")})
+    assert resp.status_code == 400
+    assert resp.json()["detail"] == "Upload must be a .csv file."
 
 
 @pytest.mark.db
