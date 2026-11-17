@@ -1,0 +1,17 @@
+# Code owners must approve pull requests that touch these paths
+# (enforced when branch protection has "Require review from Code Owners" turned on).
+
+# Default: Lead Architect
+*                       @ttsirinop
+
+# Interface Designer owns the API contract, so code and spec can't drift apart.
+/app/api/               @JSmith0910
+/app/schemas.py         @JSmith0910
+/docs/openapi.json      @JSmith0910
+
+# Lead Architect owns the schema and the pipeline.
+/db/                    @ttsirinop
+/.github/               @ttsirinop
+
+# AI matching: shared while the Integration Lead role is covered by the other two members.
+/app/matching/          @ttsirinop @JSmith0910
