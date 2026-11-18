@@ -6,15 +6,16 @@ import psycopg
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 
+from app.api.profiles import router as profiles_router
+from app.api.roles import router as roles_router
 from app.db.connection import get_connection
 
 logger = logging.getLogger("skillbridge")
 
 app = FastAPI(title="SkillBridge", version="0.1.0-alpha")
 
-# Routers from the other modules are included here, for example:
-# from app.api.profiles import router as profiles_router
-# app.include_router(profiles_router)
+app.include_router(profiles_router)
+app.include_router(roles_router)
 
 
 @app.exception_handler(psycopg.OperationalError)

@@ -27,6 +27,8 @@ jobs:
 
     env:
       DATABASE_URL: postgresql://skillbridge:skillbridge@localhost:5432/skillbridge
+      # Fast, deterministic stand-in for the model; the ai-model job below tests the real one.
+      EMBEDDING_BACKEND: hashing
 
     steps:
       - uses: actions/checkout@v4
@@ -44,3 +46,34 @@ jobs:
 
       - name: Test
         run: pytest -v
+
+  # Runs the real Sentence-BERT model so the AI feature itself is tested on every push.
+  ai-model:
+    runs-on: ubuntu-latest
+
+    env:
+      EMBEDDING_BACKEND: sbert
+      REQUIRE_SBERT: "1"   # fail, don't skip, if the model can't be installed
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Cache Sentence-BERT model
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: hf-${{ runner.os }}-${{ hashFiles('requirements-ai.txt') }}
+
+      - name: Install dependencies (CPU-only PyTorch)
+        run: |
+          pip install -r requirements-dev.txt
+          pip install torch==2.5.1 --index-url https://download.pytorch.org/whl/cpu
+          pip install -r requirements-ai.txt
+
+      - name: Test the real model
+        run: pytest -v -m ai
