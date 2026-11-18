@@ -70,6 +70,11 @@ def rank_candidates(conn: psycopg.Connection, encoder: Encoder, role_id: int, li
     refresh_profile_embeddings(conn, encoder)
     role_vector, required_skills = _role_vector(conn, encoder, role_id)
 
+    # The HNSW index returns at most hnsw.ef_search candidates (pgvector default: 40), and the
+    # model_version filter runs after that, so a request for 50 matches could come back short once
+    # the table is big enough for the planner to use the index. Widen it for this transaction only.
+    conn.execute("SELECT set_config('hnsw.ef_search', %s, true)", (str(max(40, limit * 4)),))
+
     rows = conn.execute(
         """
         SELECT e.id, e.full_name, e.email, sp.skills, 1 - (sp.embedding <=> %s) AS score

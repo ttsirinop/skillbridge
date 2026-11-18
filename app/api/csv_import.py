@@ -13,21 +13,26 @@ import io
 
 from pydantic import ValidationError
 
+from app.config import get_settings
 from app.schemas import ImportRowError, ProfileCreate
 
 REQUIRED_COLUMNS = ("full_name", "email", "skills")
 OPTIONAL_COLUMNS = ("department", "summary")
-MAX_ROWS = 1000
-MAX_BYTES = 1_000_000
 
 
 class CsvFormatError(ValueError):
     """The file as a whole is unusable (wrong encoding, missing columns, too many rows)."""
 
 
-def parse_profiles_csv(content: bytes) -> tuple[list[ProfileCreate], list[ImportRowError]]:
-    if len(content) > MAX_BYTES:
-        raise CsvFormatError(f"File is larger than {MAX_BYTES // 1000} KB.")
+def parse_profiles_csv(
+    content: bytes, max_rows: int | None = None, max_bytes: int | None = None
+) -> tuple[list[ProfileCreate], list[ImportRowError]]:
+    """Limits default to MAX_IMPORT_ROWS and MAX_UPLOAD_BYTES from the environment (see app/config.py)."""
+    settings = get_settings()
+    max_rows = max_rows if max_rows is not None else settings.max_import_rows
+    max_bytes = max_bytes if max_bytes is not None else settings.max_upload_bytes
+    if len(content) > max_bytes:
+        raise CsvFormatError(f"File is larger than {max_bytes:,} bytes.")
     try:
         text = content.decode("utf-8-sig")  # tolerate the BOM Excel adds
     except UnicodeDecodeError as exc:
@@ -46,8 +51,8 @@ def parse_profiles_csv(content: bytes) -> tuple[list[ProfileCreate], list[Import
 
     for index, raw in enumerate(reader):
         line = index + 2  # line 1 is the header
-        if index >= MAX_ROWS:
-            raise CsvFormatError(f"File has more than {MAX_ROWS} rows.")
+        if index >= max_rows:
+            raise CsvFormatError(f"File has more than {max_rows} rows.")
         if raw is None or not any((v or "").strip() for k, v in raw.items() if k is not None):
             continue  # skip blank lines
 
